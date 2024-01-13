@@ -258,6 +258,20 @@ jobs:
                exit 1
            fi
        fi
+
+    - name: Upload Image_ALL
+      if: env.CHECK_FILE_IS_OK == 'true'
+      uses: actions/upload-artifact@v3
+      with:
+        name: ALL
+        path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}
+
+    - name: Upload Image_ALL
+      if: env.CHECK_FILE_IS_OK == 'true'
+      uses: actions/upload-artifact@v3
+      with:
+        name: bash
+        path: /home/runner/work/_temp/
   
     - name: Make Anykernel3
       if: env.CHECK_FILE_IS_OK == 'true'

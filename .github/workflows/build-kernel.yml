@@ -265,13 +265,6 @@ jobs:
       with:
         name: ALL
         path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}
-
-    - name: Upload Image_ALL
-      if: env.CHECK_FILE_IS_OK == 'true'
-      uses: actions/upload-artifact@v3
-      with:
-        name: bash
-        path: /home/runner/work/_temp/
   
     - name: Make Anykernel3
       if: env.CHECK_FILE_IS_OK == 'true'
@@ -302,6 +295,13 @@ jobs:
             cp android-kernel/out/arch/${{ env.ARCH }}/boot/dtbo.img AnyKernel3/
         fi
         rm -rf AnyKernel3/.git* AnyKernel3/README.md
+        
+    - name: Upload Image_ALL
+      if: env.CHECK_FILE_IS_OK == 'true'
+      uses: actions/upload-artifact@v3
+      with:
+        name: bash
+        path: /home/runner/work/
 
     - name: Make boot image
       if: env.HAVE_SOURCE_BOOT_IMAGE == 'true' && env.CHECK_FILE_IS_OK == 'true'
